@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import React from "react";
 import SingleProduct from "./SingleProduct";
+import { Cart } from "../context";
 
-const Cart = ({ cart, setCart }) => {
-  const [total, setTotal] = useState();
-  useEffect(() => {
-    setTotal(
-      cart.reduce(
-        (accumulator, currentValue) => accumulator + Number(currentValue.price),
-        0
-      )
-    );
-  }, [cart]);
+const CartPage = () => {
+
+const { cart, total } = useContext(Cart);
+
 
 //   useEffect(() => {
 //     setTotal(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
@@ -28,8 +23,7 @@ const Cart = ({ cart, setCart }) => {
             <SingleProduct
               prod={prod}
               key={prod.id}
-              cart={cart}
-              setCart={setCart}
+             
             />
           );
         })}
@@ -38,4 +32,4 @@ const Cart = ({ cart, setCart }) => {
   );
 };
 
-export default Cart;
+export default CartPage;

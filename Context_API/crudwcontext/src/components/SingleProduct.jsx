@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Cart } from "../context";
+const SingleProduct = ({ prod }) => {
+  const { cart, removeProductFromCart, addProductToCart } =
+    useContext(Cart);
 
-const SingleProduct = ({ prod, cart, setCart }) => {
-
-
-  console.log(cart)
   return (
     <div className="products">
       <img src={prod.image} alt={prod.name} />
@@ -15,7 +15,7 @@ const SingleProduct = ({ prod, cart, setCart }) => {
         <button
           className="add"
           onClick={() => {
-            setCart(cart.filter((c) => c.id !== prod.id));
+            removeProductFromCart(prod);
           }}
         >
           Remove From Cart
@@ -24,7 +24,7 @@ const SingleProduct = ({ prod, cart, setCart }) => {
         <button
           className="add"
           onClick={() => {
-            setCart([...cart, prod]);
+            addProductToCart(prod);
           }}
         >
           Add to Cart
